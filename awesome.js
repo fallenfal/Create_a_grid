@@ -1,5 +1,29 @@
 
 const getParentGrid = document.getElementById("main-body")
+const clickEvent = document.getElementsByName('click-event')
+
+
+// DEBUGGING AREA
+
+console.log(clickEvent)
+
+
+
+
+
+//
+function getCLickEvent(){
+    let data = ''
+    clickEvent.forEach(function (e){
+        if(e.checked === true){
+            console.log(e.value)
+            data = e.value
+        }
+    })
+    return data
+}
+
+
 
 // handles the rows number generator
 const getRowsRange = document.getElementById('row-range')
@@ -44,9 +68,11 @@ function init(){
     getParentGrid.innerHTML = ''
     grid(rows,columns)
 
+    let clickEvent = getCLickEvent()
+
     const getSquares = document.getElementsByClassName('single-grid')
     Array.from(getSquares).forEach((e) => {
-        e.addEventListener('mouseover', function(){
+        e.addEventListener(clickEvent, function(){
             console.log('filled')
             e.classList.add("fill");
         })
@@ -54,5 +80,4 @@ function init(){
 
 
 }
-
 btnGenerate.addEventListener('click',init)
